@@ -36,9 +36,9 @@ REQUIRED_PACKAGES = [
     # Installation related.
     'anytree==2.4.3',
     'google-api-python-client==1.7.10',
-    'google-auth==1.6.3',
+    'google-auth==1.19.0',  # 1.19.0
     'google-auth-httplib2==0.0.3',
-    'idna==2.8',
+    'idna==2.8',  # 2.10
     'Jinja2==2.10.1',
     'jmespath==0.9.3',
     'netaddr==0.7.19',
@@ -47,14 +47,14 @@ REQUIRED_PACKAGES = [
     'python-dateutil==2.7.5',
     'ratelimiter==1.2.0.post0',
     'retrying==1.3.3',
-    'requests[security]==2.21.0',
+    'requests[security]==2.21.0',  # 2.24.0
     'sendgrid==5.6.0',
     'simple-crypt==4.1.7',
     'unicodecsv==0.14.1',
     # Setup related.
-    'grpcio==1.22.0',
-    'grpcio-tools==1.22.0',
-    'protobuf==3.9.0',
+    'grpcio==1.30.0',  # 1.30.0
+    'grpcio-tools==1.30.0',  # 1.30.0
+    'protobuf==3.12.2',  # 3.12.2
     # Testing related.
     'parameterized==0.6.1',
     'ruamel.yaml==0.15.37',
