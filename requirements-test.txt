@@ -1,5 +1,5 @@
 # End-to-end test requirements
 protobuf==3.12.2
 google-cloud-securitycenter==0.6.0
-google-cloud-storage==1.25.0
-pytest==5.3.3
+google-cloud-storage==1.29.0
+pytest==5.4.3
