@@ -34,6 +34,7 @@ def pytest_addoption(parser):
                      default=CLOUDSQL_PORT,
                      help='Cloud SQL port')
     parser.addoption('--cloudsql_username', help='Cloud SQL username')
+    parser.addoption('--cscc_source_id', help='CSCC Source Id')
     parser.addoption('--forseti_client_service_account',
                      help='Forseti client service account email')
     parser.addoption('--forseti_server_bucket_name',
@@ -65,6 +66,9 @@ def pytest_configure(config):
     )
     config.addinivalue_line(
         'markers', 'model: mark to run all model tests'
+    )
+    config.addinivalue_line(
+        'markers', 'notifier: mark to run all notifier tests'
     )
     config.addinivalue_line(
         'markers', 'scanner: mark to run all scanner tests'

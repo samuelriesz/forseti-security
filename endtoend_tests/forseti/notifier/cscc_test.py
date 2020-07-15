@@ -40,12 +40,14 @@ class TestNotifierCloudSecurityCommandCenter:
     @pytest.mark.e2e
     @pytest.mark.notifier
     @pytest.mark.server
-    def test_cscc_findings_match_violations(self, cscc_source_id,
+    def test_cscc_findings_match_violations(self, cloudsql_connection,
+                                            cscc_source_id,
                                             forseti_notifier_readonly,
                                             forseti_scan_readonly):
         """CSCC findings test
 
         Args:
+            cloudsql_connection (object): SQLAlchemy connection for Forseti
             cscc_source_id (str): CSCC Source Id.
             forseti_notifier_readonly (object): Notifier run process result.
             forseti_scan_readonly (object): Scanner run process result.
@@ -53,8 +55,8 @@ class TestNotifierCloudSecurityCommandCenter:
         # Arrange
         _ = forseti_notifier_readonly
         scanner_id, _ = forseti_scan_readonly
-        violations = (
-            TestNotifierCloudSecurityCommandCenter.get_violations(scanner_id))
+        violations = (TestNotifierCloudSecurityCommandCenter.get_violations(
+                cloudsql_connection, scanner_id))
 
         # Act
         client = securitycenter.SecurityCenterClient()
