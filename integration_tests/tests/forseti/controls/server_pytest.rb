@@ -16,21 +16,25 @@ forseti_suffix = attribute('suffix')
 cloudsql_password = attribute('forseti-cloudsql-password')
 cloudsql_username = attribute('forseti-cloudsql-user')
 cloudsql_instance_name = "forseti-server-db-#{forseti_suffix}"
+cscc_source_id = attribute('cscc_source_id')
 forseti_server_vm_name = attribute('forseti-server-vm-name')
 forseti_test_requirements = '/home/ubuntu/forseti-security/requirements-test.txt'
 
 
-control "scanner-config-validator" do
+control "server-pytest" do
   describe command("sudo pip3 install -r #{forseti_test_requirements}") do
     its('exit_status') { should eq 0 }
   end
 
-  describe command("sudo pytest -v $FORSETI_HOME/endtoend_tests/forseti/scanner/ \
+  describe command("sudo pytest -m server -v $FORSETI_HOME/endtoend_tests/ \
+        --ignore=$FORSETI_HOME/endtoend_tests/forseti/inventory \
         --cloudsql_password=#{cloudsql_password} \
         --cloudsql_username=#{cloudsql_username} \
         --cloudsql_instance_name=#{cloudsql_instance_name} \
+        --cscc_source_id=#{cscc_source_id} \
         --forseti_server_vm_name=#{forseti_server_vm_name}") do
     its('exit_status') { should eq 0 }
+    its('stdout') { should match(/test_cscc_findings_match_violations PASSED/) }
     its('stdout') { should match(/test_cv_cloudsql_location PASSED/) }
     its('stdout') { should match(/test_cv_compute_zone PASSED/) }
     its('stdout') { should match(/test_cv_scan PASSED/) }

@@ -23,6 +23,11 @@ variable "config_validator_enabled" {
   default     = true
 }
 
+variable "cscc_source_id" {
+  description = "Source ID for CSCC Beta API"
+  default     = ""
+}
+
 variable "domain" {
   description = "GCP Organization domain details that will be used for integration tests"
 }

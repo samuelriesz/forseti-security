@@ -109,6 +109,11 @@ def cloudsql_username(request):
 
 
 @pytest.fixture(scope="session")
+def cscc_source_id(request):
+    return request.config.getoption('--cscc_source_id')
+
+
+@pytest.fixture(scope="session")
 def forseti_client_service_account(request):
     return request.config.getoption('--forseti_client_service_account')
 
